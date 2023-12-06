@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>个人主页</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section class="content">
+        <div class="box">
+            <!-- 头像 替换你的QQ即可获取你的QQ头像 -->
+            <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=161909737&amp;spec=100" alt="">
+            <!-- 名称 -->
+            <h2>My 个人网页</h2>
+            <!-- 售后 -->
+            <div class="as">
+                <p>添加好友QQ<a href="https://wpa.qq.com/msgrd?v=3&uin=184663457&site=qq&menu=yes&jumpflag=1"><span style="color: crimson;">184663457</span></a></p>
+            </div>
+            <!-- 超链接 -->
+            <ul class="site">
+                <li><a href="https://wpa.qq.com/msgrd?v=3&uin=184663457&site=qq&menu=yes&jumpflag=1" rel="noopener noreferrer">联系我</a></li>
+                <li><a href="../page/page.html" rel="noopener noreferrer">个人主页</a></li>
+                <li><a href="../404.html"  rel="noopener noreferrer">自我介绍</a></li>
+            </ul>
+        </div>
+    </section>
+    <script src="flexible.js"></script>
+    <!-- 音乐播放器代码 -->
+    <!-- 配置播放器 -->
+<div id="xf-MusicPlayer" data-cdnName="https://player.xfyun.club/js"></div>
+
+<!-- 引入外部CDN插件 -->
+<script src="https://player.xfyun.club/js/xf-MusicPlayer/js/xf-MusicPlayer.min.js"></script>
+
+<script>
+        //鼠标点击出现爱心特效  这部分特效是从一个网页搬过来的  觉得挺好看的
+        (function (window, document, undefined) {
+            var hearts = [];
+            window.requestAnimationFrame = (function () {
+                return window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame ||
+				window.msRequestAnimationFrame ||
+				function (callback) {
+				    setTimeout(callback, 1000 / 60);
+				}
+            })();
+            init();
+            function init() {
+                css(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+                attachEvent();
+                gameloop();
+            }
+            function gameloop() {
+                for (var i = 0; i < hearts.length; i++) {
+                    if (hearts[i].alpha <= 0) {
+                        document.body.removeChild(hearts[i].el);
+                        hearts.splice(i, 1);
+                        continue;
+                    }
+                    hearts[i].y--;
+                    hearts[i].scale += 0.004;
+                    hearts[i].alpha -= 0.013;
+                    hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+                }
+                requestAnimationFrame(gameloop);
+            }
+            function attachEvent() {
+                var old = typeof window.onclick === "function" && window.onclick;
+                window.onclick = function (event) {
+                    old && old();
+                    createHeart(event);
+                }
+            }
+            function createHeart(event) {
+                var d = document.createElement("div");
+                d.className = "heart";
+                hearts.push({
+                    el: d,
+                    x: event.clientX - 5,
+                    y: event.clientY - 5,
+                    scale: 1,
+                    alpha: 1,
+                    color: randomColor()
+                });
+                document.body.appendChild(d);
+            }
+            function css(css) {
+                var style = document.createElement("style");
+                style.type = "text/css";
+                try {
+                    style.appendChild(document.createTextNode(css));
+                } catch (ex) {
+                    style.styleSheet.cssText = css;
+                }
+                document.getElementsByTagName('head')[0].appendChild(style);
+            }
+            function randomColor() {
+                return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+            }
+        })(window, document);
+    </script>
+
+</body>
+
+</html>
