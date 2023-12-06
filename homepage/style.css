@@ -7,7 +7,7 @@
 body {
   font-family: "微软雅黑", sans-serif;
   /* 这里修改背景图 */
-  background: url(http://www.netbian.com/down.php?id=32599&type=undefined) no-repeat center;
+  background: url(./img.city3.jpg) no-repeat center;
   background-size: cover;
   -webkit-background-attachment: fixed;
   background-attachment: fixed;
